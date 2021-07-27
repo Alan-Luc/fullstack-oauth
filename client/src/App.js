@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
-import axios from 'axios'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Login from "./components/login";
+import Profile from "./components/profile";
+
 
 const App = () => {
-
-
   return (
-    <div>
-      <a href="http://localhost:8000/auth/google">Login</a>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Login}/>
+      <Route exact path="/profile-view" component={Profile}/>
+    </Switch>
   )
 }
 
