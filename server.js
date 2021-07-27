@@ -3,6 +3,7 @@ const authRoutes = require("./routes/auth.routes");
 const profileRoutes = require("./routes/profile.routes");
 const passportSetup = require("./config/passportSetup");
 const mongoose = require("mongoose");
+const path = require("path")
 const keys =  require("./config/keys");
 const cookieSession = require("cookie-session")
 const passport = require("passport");
@@ -31,6 +32,9 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }, () => {
 //set up routes
 app.use("/auth", authRoutes)
 app.use("/profile", profileRoutes)
+
+app.use(express.static(__dirname + '/client/public'));
+app.get('*', (req,res) => res.sendFile(path.join(__dirname+'/client/public/index.html')))
 
 // create home route
 app.get("/", (req, res) => {
