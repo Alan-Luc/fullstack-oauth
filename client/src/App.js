@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={Login}/>
-      <Route exact path="/profile-view" component={Profile}/>
+      <Route exact path="/me" component={Profile}/>
     </Switch>
   )
 }

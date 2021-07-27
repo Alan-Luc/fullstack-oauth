@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const Profile = () => {
     const [data, setData] = useState();
-    useEffect(() => {
-        api_call();
-    },[])
 
     const api_call = async () => {
-        const call = await fetch("http://localhost:8000/profile");
+        const call = await fetch("/profile");
         const data = await call.json();
         setData(data);
         console.log(data);
@@ -15,8 +12,8 @@ const Profile = () => {
 
     return (
         <div>
-            <h1>{data}</h1>
-            <h2>dasfdsajfasl</h2>
+            {data !== undefined && <h1>{data.username}</h1>}
+            <button onClick={api_call}></button>
         </div>
     )
 }

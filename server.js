@@ -33,8 +33,11 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }, () => {
 app.use("/auth", authRoutes)
 app.use("/profile", profileRoutes)
 
-app.use(express.static(__dirname + '/client/public'));
+app.use(express.static(path.join(__dirname + '/client/public')));
 app.get('*', (req,res) => res.sendFile(path.join(__dirname+'/client/public/index.html')))
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // create home route
 app.get("/", (req, res) => {
