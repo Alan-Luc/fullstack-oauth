@@ -7,8 +7,19 @@ const path = require("path")
 const keys =  require("./config/keys");
 const cookieSession = require("cookie-session")
 const passport = require("passport");
+const cors = require("cors");
 
 const app = express();
+
+const corsOptions = {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Access-Control-Allow-Origin", "Content-Type"],
+    credentials: true,
+    preflightContinue: true,
+    optionsSuccessStatus: 200
+};
+app.options("*", cors(corsOptions));
 
 //setup view engine
 app.set("view engine", "ejs");
@@ -30,14 +41,15 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }, () => {
 
 
 //set up routes
-app.use("/auth", authRoutes)
-app.use("/profile", profileRoutes)
+app.use("/auth", authRoutes, cors(corsOptions))
+app.use("/profile", profileRoutes, cors(corsOptions))
 
 app.use(express.static(path.join(__dirname + '/client/public')));
 app.get('*', (req,res) => res.sendFile(path.join(__dirname+'/client/public/index.html')))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 // create home route
 app.get("/", (req, res) => {

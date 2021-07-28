@@ -4,21 +4,14 @@ const getAll = () => {
     return http.get("/profile");
 };
 
-const get = (id) => {
-    return http.get(`/${id}`);
+const update = (data) => {
+    return http.put("/profile", data);
 };
 
-const update = (id, data) => {
-    return http.put(`/${id}`, data);
-};
-
-const remove = (id) => {
-    return http.delete(`/${id}`);
+const remove = () => {
+    return http.delete("/profile");
 };
 
 export default {
-    getAll,
-    remove, 
-    get,
-    update
+    getAll, update, remove
 };
