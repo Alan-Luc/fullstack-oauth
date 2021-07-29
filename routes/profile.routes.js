@@ -13,7 +13,7 @@ const authCheck = (req, res, next) => {
 
 // view your profile
 router.get("/", authCheck, (req, res) => {
-    res.json(req.user)
+    res.send(req.user)
 });
 
 // find all

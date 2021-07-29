@@ -19,6 +19,7 @@ const corsOptions = {
     preflightContinue: true,
     optionsSuccessStatus: 200
 };
+app.use(cors(corsOptions))
 app.options("*", cors(corsOptions));
 
 //setup view engine

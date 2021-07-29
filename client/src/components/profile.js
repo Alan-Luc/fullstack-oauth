@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 import UserService from "../services/user.service";
 
 const Profile = () => {
@@ -17,10 +18,14 @@ const Profile = () => {
     const [edit, setEdit] = useState(false);
 
     const getAccount = async () => {
-        const call = await fetch("/profile");
-        const data = await call.json();
-        setData(data);
-        console.log(data);
+        axios.get("/profile")
+            .then(res => {
+                setData(res.data)
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     useEffect(()=>{
