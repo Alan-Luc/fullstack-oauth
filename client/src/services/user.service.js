@@ -4,8 +4,8 @@ const getAll = () => {
     return http.get("/profile");
 };
 
-const update = (data) => {
-    return http.put("/profile", data);
+const update = (id, data) => {
+    return http.put(`/profile/${id}`, data);
 };
 
 const remove = () => {

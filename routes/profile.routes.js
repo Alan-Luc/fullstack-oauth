@@ -4,7 +4,8 @@ const users = require("../controllers/user.controller");
 const authCheck = (req, res, next) => {
     if(!req.user) {
         // if user is not logged in
-        res.redirect("/auth/login")
+        console.log("big penis")
+        res.redirect("http://localhost:3000/")
     } else {
         //if logged in
         next();
@@ -13,6 +14,7 @@ const authCheck = (req, res, next) => {
 
 // view your profile
 router.get("/", authCheck, (req, res) => {
+    console.log("big penis", req.user)
     res.send(req.user)
 });
 
@@ -20,7 +22,7 @@ router.get("/", authCheck, (req, res) => {
 router.get("/all", authCheck, users.findAll);
 
 // update your profile
-router.put("/", authCheck, users.update);
+router.put("/:id", users.update);
 
 // delete your profile
 router.delete("/", authCheck, users.delete);

@@ -13,15 +13,15 @@ const Profile = () => {
         budget: ""
     };
 
-    const [data, setData] = useState();
+    const [info, setInfo] = useState();
     const [profile, setProfile] = useState(profileInitial);
     const [edit, setEdit] = useState(false);
 
     const getAccount = async () => {
         axios.get("/profile")
             .then(res => {
-                setData(res.data)
-                console.log(res)
+                setInfo(res.data)
+                console.log(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -49,8 +49,8 @@ const Profile = () => {
               budget: profile.budget
             }
         }
-
-        UserService.update(data)
+        console.log(info);
+        UserService.update(info.googleId, data)
             .then(response => {
                 console.log(response.data);
             })
@@ -63,7 +63,7 @@ const Profile = () => {
 
     return (
         <div>
-            {data !== undefined && <h1>{data.username}</h1>}
+            {info !== undefined && <h1>{info.username}</h1>}
             {!edit ?
                 <div>
                     <h4>Name: {profile.name}</h4>
