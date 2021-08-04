@@ -49,8 +49,8 @@ const Profile = () => {
               budget: profile.budget
             }
         }
-        console.log(info);
-        UserService.update(info.googleId, data)
+        console.log(info._id);
+        UserService.update(info._id, data)
             .then(response => {
                 console.log(response.data);
             })

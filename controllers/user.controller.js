@@ -33,8 +33,8 @@ exports.findOne = (req,res) => {
 };
 
 exports.update = (req, res) => {
-    console.log(req.user)
-    if(!req.params.id) {
+    console.log(req.body)
+    if(!req.body) {
         return res.status(400).send({
             message: "Data to update cannot be empty"
         })
