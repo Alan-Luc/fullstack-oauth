@@ -11,6 +11,7 @@ router.get("/login", (req, res) => {
 router.get("/logout", (req, res) => {
     // handlw with passport
     req.logout();
+    res.send("fuck yourself");
     res.redirect("http://localhost:3000/");
 });
 

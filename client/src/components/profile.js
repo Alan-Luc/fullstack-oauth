@@ -21,7 +21,9 @@ const Profile = () => {
         axios.get("/profile")
             .then(res => {
                 setInfo(res.data)
+                setProfile(res.data.profile);
                 console.log(res.data)
+                console.log(res.data.profile)
             })
             .catch(err => {
                 console.log(err)
@@ -57,22 +59,35 @@ const Profile = () => {
             .catch(e => {
                 console.log(e);
             });
+        setProfile(data);
+        getAccount();
         setEdit(false);
         console.log(profile)
+        console.log(info.profile)
     }
+
+    const logout = () => {
+        axios.get("/auth/logout")
+            .then(res => {
+                console.log("fuck yourself")
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    };
 
     return (
         <div>
             {info !== undefined && <h1>{info.username}</h1>}
-            {!edit ?
+            {(!edit && (info !== undefined ))?
                 <div>
-                    <h4>Name: {profile.name}</h4>
-                    <h4>Age: {profile.age}</h4>
-                    <h4>Gender: {profile.gender}</h4>
-                    <h4>Location: {profile.location}</h4>
-                    <h4>Bio: {profile.bio}</h4>
-                    <h4>Occupation: {profile.occupation}</h4>
-                    <h4>Budget: {profile.budget}</h4>
+                    <h4>Name: {info.profile.name}</h4>
+                    <h4>Age: {info.profile.age}</h4>
+                    <h4>Gender: {info.profile.gender}</h4>
+                    <h4>Location: {info.profile.location}</h4>
+                    <h4>Bio: {info.profile.bio}</h4>
+                    <h4>Occupation: {info.profile.occupation}</h4>
+                    <h4>Budget: {info.profile.budget}</h4>
                     <button onClick={() => setEdit(true)}>Edit Profile</button>
                 </div> :
                 <div>
@@ -129,6 +144,7 @@ const Profile = () => {
                     </form>
                     <button style={{width: "150px", marginLeft: "auto", marginRight: "auto"}} onClick={() =>updateProfile()}>Save</button>
                 </div>}
+                <a href="http://localhost:8000/auth/logout">Logout</a>
         </div>
     )
 }

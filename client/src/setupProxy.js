@@ -6,4 +6,10 @@ module.exports = (app) => {
             target: "http://localhost:8000/"
         })
     );
+
+    app.use("/auth",
+        createProxyMiddleware({
+            target: "http://localhost:8000/"
+        })
+    );
 }
