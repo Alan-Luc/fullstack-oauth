@@ -32,7 +32,7 @@ const Profile = () => {
 
     useEffect(()=>{
         getAccount();
-    },[])
+    },[edit])
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -79,7 +79,7 @@ const Profile = () => {
     return (
         <div>
             {info !== undefined && <h1>{info.username}</h1>}
-            {(!edit && (info !== undefined ))?
+            {(!edit && (info !== undefined))?
                 <div>
                     <h4>Name: {info.profile.name}</h4>
                     <h4>Age: {info.profile.age}</h4>
