@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
+import { Redirect, Link } from "react-router-dom"
 import UserService from "../services/user.service";
 
 const Profile = () => {
@@ -26,7 +27,8 @@ const Profile = () => {
                 console.log(res.data.profile)
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                window.location.href = "http://localhost:3000/";
             })
     }
 
@@ -69,11 +71,14 @@ const Profile = () => {
     const logout = () => {
         axios.get("/auth/logout")
             .then(res => {
+                console.log(res)
                 console.log("fuck yourself")
+                window.location.href = "http://localhost:3000/"
             })
             .catch(e => {
                 console.log(e)
             })
+        return <Redirect to="/"/>
     };
 
     return (
@@ -143,8 +148,10 @@ const Profile = () => {
                         />
                     </form>
                     <button style={{width: "150px", marginLeft: "auto", marginRight: "auto"}} onClick={() =>updateProfile()}>Save</button>
+                    <button style={{width: "150px", marginLeft: "auto", marginRight: "auto"}} onClick={() => setEdit(false)}>Go Back</button>
                 </div>}
-                <a href="http://localhost:8000/auth/logout">Logout</a>
+                <button onClick={logout}>Logout</button>
+                <Link to="/all"><button>View All</button></Link>
         </div>
     )
 }

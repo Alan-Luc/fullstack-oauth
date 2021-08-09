@@ -5,7 +5,7 @@ const authCheck = (req, res, next) => {
     if(!req.user) {
         // if user is not logged in
         console.log("big penis")
-        res.redirect("http://localhost:3000/")
+        //res.redirect("/login")
     } else {
         //if logged in
         next();
@@ -19,12 +19,12 @@ router.get("/", authCheck, (req, res) => {
 });
 
 // find all
-router.get("/all", authCheck, users.findAll);
+router.get("/all", users.findAll);
 
 // update your profile
 router.put("/:id", users.update);
 
 // delete your profile
-router.delete("/", authCheck, users.delete);
+router.delete("/", users.delete);
 
 module.exports = router;

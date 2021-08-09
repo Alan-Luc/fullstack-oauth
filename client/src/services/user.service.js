@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 const getAll = () => {
-    return http.get("/profile");
+    return http.get("/profile/all");
 };
 
 const update = (id, data) => {
