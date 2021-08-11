@@ -1,5 +1,6 @@
 import React from "react";
-import login from "./login.css"
+import login from "./login.css";
+import { Redirect, Link } from "react-router-dom";
 
 const Landing = () =>{
     return(
@@ -7,7 +8,10 @@ const Landing = () =>{
             <div className="landing-heading">
                 <div className="landing-buttons">
                     <button className="landing-button1">Sign Up</button>
-                    <button className="landing-button2">Sign In</button>
+                    <Link to="/login">
+                        <button className="landing-button2">Sign In</button>
+                    </Link>
+                    
                 </div>
             </div>
             <div className="landing-body">

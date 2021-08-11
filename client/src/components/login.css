@@ -31,21 +31,51 @@
 }
 
 .login-container{
-    width: 500px;
-    height: 600px;
+    width: 400px;
+    height: 500px;
     margin-left: auto;
     margin-right: auto;
-    border: solid;
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .login-button{
-    font-size:x-large;
+    font-size: larger;
     border: solid 1px;
     border-radius: 5px;
-    padding-left: 80px;
-    padding-right: 80px;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+.login-button:visited{
+    color: black;
+}
+.login-button:hover{
+    background-color: aliceblue;
+}
+
+.login-textbox{
+    width: 98%;
+    height: 1.5vw;
+}
+
+form{
+    font-size: medium;
+}
+
+.login-button2{
+    font-size: larger;
+    border: solid 1px;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.login-button2:hover{
+    background-color: aliceblue;
 }
