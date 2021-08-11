@@ -5,16 +5,17 @@ const authCheck = (req, res, next) => {
     if(!req.user) {
         // if user is not logged in
         console.log("big penis")
-        //res.redirect("/login")
+        res.redirect("/login")
     } else {
         //if logged in
+        console.log("small penis")
         next();
     }
 };
 
 // view your profile
 router.get("/", authCheck, (req, res) => {
-    console.log("big penis", req.user)
+    console.log("small penis", req.user)
     res.send(req.user)
 });
 

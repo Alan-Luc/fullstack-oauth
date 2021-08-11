@@ -16,6 +16,13 @@ const ViewAll = () => {
             })
     }
     useEffect(() => {
+        axios.get("/profile")
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
         apiCall();
     },[])
 

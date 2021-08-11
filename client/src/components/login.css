@@ -1,0 +1,51 @@
+.landing-heading{
+    height: 3vw;
+    border-bottom: solid 1px;
+}
+
+.landing-buttons{
+    margin-left: 90vw;
+    padding-top: 0.7vw;
+    height: 30px;
+    width: 150px;
+}
+
+.landing-button1{
+    height: 30px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.landing-button2{
+    height: 30px;
+    border-radius: 0px 5px 5px 0px;
+    border-left: none;
+}
+
+.landing-body{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8vw;
+}
+
+.login-container{
+    width: 500px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid;
+}
+
+.login-button{
+    font-size:x-large;
+    border: solid 1px;
+    border-radius: 5px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}

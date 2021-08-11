@@ -1,3 +1,4 @@
+const http = require("http");
 const express = require("express");
 const authRoutes = require("./routes/auth.routes");
 const profileRoutes = require("./routes/profile.routes");
@@ -8,8 +9,11 @@ const keys =  require("./config/keys");
 const cookieSession = require("cookie-session")
 const passport = require("passport");
 const cors = require("cors");
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users.js");
+
 
 const app = express();
+const server = http.createServer(app);
 
 const corsOptions = {
     origin: "http://localhost:3000",
@@ -19,6 +23,11 @@ const corsOptions = {
     preflightContinue: true,
     optionsSuccessStatus: 200
 };
+
+const io = require("socket.io")(server, {
+    corsOptions
+});
+
 app.use(cors(corsOptions))
 
 app.use(express.json());
@@ -62,9 +71,13 @@ app.get("/", (req, res) => {
     res.render("home", { user: req.user });
 })
 
+io.on("connect", (socket) => {
+    console.log("made socket connection", socket.id);
+})
+
 
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, () => {
-    console.log(`app now listening for requests on port ${PORT}`);
+server.listen(PORT, () => {
+    console.log(`Server now listening for requests on port ${PORT}`);
 })
