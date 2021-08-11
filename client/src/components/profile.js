@@ -73,7 +73,7 @@ const Profile = () => {
             .then(res => {
                 console.log(res)
                 console.log("fuck yourself")
-                window.location.href = "http://localhost:3000/"
+                window.location.href = "http://localhost:3000/login"
             })
             .catch(e => {
                 console.log(e)
