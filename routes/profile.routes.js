@@ -2,7 +2,7 @@ const router = require("express").Router();
 const users = require("../controllers/user.controller");
 
 const authCheck = (req, res, next) => {
-    if(!req.user) {
+    if(!req.isAuthenticated()) {
         // if user is not logged in
         console.log("big penis")
         res.redirect("/login")

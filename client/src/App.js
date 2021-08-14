@@ -5,6 +5,7 @@ import Login from "./components/login";
 import Profile from "./components/profile";
 import ViewAll from "./components/viewAll";
 import Join from "./chat/join";
+import Chat from "./chat/chat";
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <Route exact path="/me" component={Profile}/>
       <Route exact path="/all" component={ViewAll}/>
       <Route exact path="/join" component={Join} />
+      <Route path ="/chat" component={Chat}/>
     </Switch>
   )
 }

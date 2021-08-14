@@ -152,6 +152,7 @@ const Profile = () => {
                 </div>}
                 <button onClick={logout}>Logout</button>
                 <Link to="/all"><button>View All</button></Link>
+                <Link to="/join"><button>Chat</button></Link>
         </div>
     )
 }
