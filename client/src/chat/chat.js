@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 import { Redirect } from "react-router-dom";
+import "./chat.css"
+import axios from "axios"
 
 let socket = io("http://localhost:8000/", {
     withCredentials: true,
@@ -15,6 +17,7 @@ const Chat = ({ location }) => {
     const [messages, setMessages] = useState([]);
     const [flag, setFlag] = useState(0);
     const ENDPOINT = "http://localhost:8000/";
+    
 
     useEffect(() => {
         socket = io.connect(ENDPOINT);
@@ -30,6 +33,14 @@ const Chat = ({ location }) => {
             }
         });
     },[ENDPOINT, location.search])
+    
+    /*useEffect(() => {
+        window.onbeforeunload = setMessages(sessionStorage.getItem("chat"))
+    
+        return () => {
+            window.onbeforeunload = null;
+        };
+    }, []);*/
 
     useEffect(() => {
         socket.on("roomData", ({ users }) => {
@@ -43,8 +54,18 @@ const Chat = ({ location }) => {
         console.log(messages)
     },[])
 
+    useEffect(() => {
+        sessionStorage.setItem("chat", JSON.stringify(messages));
+        let data = JSON.parse(sessionStorage.getItem("chat"));
+        console.log(data);
+    },[messages]);
+
+
+
+
+
     const handleKeyPress = (e) => {
-        if(e.key) {
+        if(e.key && (message === "")) {
             socket.emit("typing");
             if(e.key === "Enter") {
                 sendMessage(e)
@@ -63,7 +84,11 @@ const Chat = ({ location }) => {
 
     return (
         <div>
-            <form>
+            <div className="chatBox">
+                {messages.length !== 0 && messages.map((item, i) => <div className="messages" key={i}><h4 style={item.user !== messages[0].user ? {marginRight: "10px", backgroundColor: "pink"} : {marginRight: "10px", backgroundColor: "blue"}  }>{item.text} </h4><h4> {item.user}</h4></div>)}
+            </div>
+            {console.log(sessionStorage.getItem("chat"))}
+            <form className="message">
                 <input 
                     placeholder=""
                     value={message}
