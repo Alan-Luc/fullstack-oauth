@@ -101,14 +101,14 @@ io.on("connect", (socket) => {
         const user = getUser(socket.id);
 
         io.to(user.room).emit("message", { user: user.name, text: message });
-        console.log({ user: user.name, text: message });
+        console.log({ user: user.name, text: message, line: 104 });
 
         callback();
     });
 
     socket.on("typing", () => {
         const user = getUser(socket.id);
-
+        console.log({ text: `${user.name} is typing...` });
         io.to(user.room).emit("typing", { text: `${user.name} is typing...`});
         //socket.broadcast.options(user.room).emit("typing", { text: `${user.name} is typing...`});
         //socket.emit("typing", { text: `${user.name} is typing...`});

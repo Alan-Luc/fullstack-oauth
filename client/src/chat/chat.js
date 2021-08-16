@@ -35,18 +35,31 @@ const Chat = ({ location }) => {
         socket.on("roomData", ({ users }) => {
             setUsers(users)
             console.log(users);
-        })
+        });
+
+        socket.on("message", (message) => {
+            setMessages(messages => [ ...messages, message ]);
+        });
+        console.log(messages)
     },[])
 
-    socket.on("message", (message) => {
-        setMessages(messages => [ ...messages, message ]);
-    })
+    const handleKeyPress = (e) => {
+        if(e.key) {
+            socket.emit("typing");
+            if(e.key === "Enter") {
+                sendMessage(e)
+            }
+            return null
+        }
+    };
+    
 
     const sendMessage = (e) => {
         e.preventDefault();
 
         socket.emit("chat", message, () => setMessage(""));
-    }
+        console.log(messages)
+    };
 
     return (
         <div>
@@ -55,7 +68,7 @@ const Chat = ({ location }) => {
                     placeholder=""
                     value={message}
                     onChange={e => setMessage(e.target.value)}
-                    onKeyPress={e => e.key === "Enter" ? sendMessage(e) : null }
+                    onKeyPress={e => handleKeyPress(e)}
                 />
                 <button onClick={e => sendMessage(e)}>send</button>
             </form>
